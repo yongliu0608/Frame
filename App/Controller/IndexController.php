@@ -7,7 +7,7 @@
  */
 namespace App\Controller;
 
-class IndexController {
+class IndexController extends \core\F {
     public function index() {
             dump(mt_rand(1,180));
     }
@@ -17,7 +17,10 @@ class IndexController {
         dump($res->fetchAll());
     }
 
-    public function hig(){
-        echo 888;
+    public function test2(){
+        $data = 'king';
+        $this->assign('data',$data);
+        $this->assign('title','hello,myFrame');
+        $this->display('Index/index.html');
     }
 }

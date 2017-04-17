@@ -3,13 +3,14 @@ namespace core;
 
 class F {
    static public $classMap = [];
+   public $data;
     static public function run() {
 
         $route = new \core\Library\Route();
-        $cont = $route->cont;
+        $cont = ucwords($route->cont);
         $method = $route->method;
-        $contFile = MODULE.'Controller/'.$cont.'Controller.php';
-        $contClass = '\\'.MODULE.'Controller\\'.$cont.'Controller';
+        $contFile = MODULE.'/Controller/'.$cont.'Controller.php';
+        $contClass = '\\'.MODULE.'\\Controller\\'.$cont.'Controller';
         if(is_file($contFile)){
            include $contFile;
            $obj =  new $contClass();
@@ -31,6 +32,18 @@ class F {
             } else {
                 return false;
             }
+        }
+    }
+
+    public function assign($k,$v){
+        $this->data[$k] = $v;
+    }
+
+    public function display($str){
+        list($path,$file) = explode('/',$str);
+        if(is_file('App/Views/'.$str)){
+            extract($this->data);
+            require 'App/Views/'.$str;
         }
     }
 }

@@ -7,7 +7,7 @@
  */
 define('F',realpath('./F').'/');
 define('CORE',F.'/core/');
-define('MODULE','App\\');
+define('MODULE','App');
 define('DEBUG',true);
 define('COMMON',CORE.'/Common');
 define('LIB_PATH',CORE.'/Library');
